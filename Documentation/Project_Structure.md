@@ -7,7 +7,7 @@ Universidad San Francisco de Quito <br>
 Programacion Avanzada en C++</h2>
 <h6 style="text-align: center; align-content: center; font-size: 10pt; color: palevioletred; 
 font-family:'Calibri Light''">
-Proyecto 1 -  <br>
+Proyecto 1 -  Taquillera de un Teatro <br>
 </h6>
 
 * **
@@ -22,8 +22,12 @@ Integrantes del Grupo: <span style="color: floralwhite"> Leonardo Olmedo (327960
 Fecha de Inicio: <span style="color: floralwhite">26 de septiembre de 2023</span> <br>
 </li>
 <li style="list-style: upper-roman; color: aquamarine">
-Descripcion del Proyecto: <span style="color: floralwhite">Insertar aqui la descripcion del proyecto y modelo de proyecto
-revisad y/o seleccionado o asignado al grupo.</span> <br>
+Descripcion del Proyecto: <span style="color: floralwhite">Se solicita la creacion de un sistema de taquillera para un teatro, donde se conoce 
+la cantidad de filas disponibles y asientos. Para estas se calculan los valores de precios, se permiten registros y cambios de
+asientos, se almacena estructuradamente los nombres de los registrados y los asientos solictados, etc.
+<br> Ademas se solicita que se pueda imprimir en pantalla un diagrama referencial con los asientos reservados y libres, asi como una
+tabla que muestre a aquellas personas y sus sillas que ya han sido reservadas..
+</span> <br>
 </li>
 </ul>
 
@@ -85,4 +89,57 @@ Asi, aunque los nombres parezcan largos, se puede leer mucho más fácil que un 
 </li>
 </ul>
 </li>
+</ul>
+
+
+* **
+
+<p style="color: cornflowerblue; text-align: justify; align-content: space-between">
+Indicaciones Generales para el desarrollo del proyecto en consola:
+<br>
+</p>
+
+<ul style="list-style-type: upper-alpha">
+<li>
+Para las dimensionalidad de la consola, y lograr una estructura visual agradable aun cuando existen
+limitaciones de la consola se utiliza un screen size de 120 pixeles,
+<ul>
+<li>
+Cada espacio de texto tiene que tener maximo 120 caracteres horizontales de extension, para que no se salga
+de los limites de la pagina de consola y se vea correctamete,
+</li>
+<li>
+Las lineas de separacion entre objetos de consola se construyen con el simbolo "="
+</li>
+</ul>
+</li>
+</ul>
+
+* **
+<p style="color: cornflowerblue; text-align: justify; align-content: space-between">
+Puntos Importantes sobre Implementacion: <br>
+</p>
+
+<ul style="list-style: upper-alpha"> 
+<li>
+Para la representaciond de butacas reservadas o libres, podemos utilizar indicadores booleanos true or false, si una 
+butaca fue reservada pues cambiamos de True a False, por ende podemos trabajar con 0 o 1 en la impresion, o con las palabras
+"Reservado" o "Libre" dependiendo del indicador booleano que tengamos
+
+
+```
+for(size_t index = 0; index < 9; index +=1) 
+{ 
+    arreglo_con_dimension_filas[index] = new bool[arreglo_valores_butacas[index]];
+    for (size_t jindex =0; jindex < arreglo_valores_butacas[index]; jindex +=1)
+    {
+        arreglo_con_dimension_filas[index][jindex] = true;
+    }
+}
+```
+De esta forma lograremos crear un codigo recursivo con una complejidad minima para la cantidad de datos que nos permite
+asignar a cada una de las sillas un valor de True y asi facilmente conocer cuales estan libres durante ejecucion, sin entrar 
+en problemas como tener un sistema de aliases para reservado o libre.
+</li>
+
 </ul>
