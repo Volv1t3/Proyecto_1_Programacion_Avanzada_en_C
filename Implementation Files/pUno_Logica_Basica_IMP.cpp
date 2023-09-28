@@ -68,7 +68,7 @@ double Logica_Basica::get_precio_por_fila(unsigned int numero_de_fila_a_evaluar)
 Logica_Basica::fila_y_butaca_basado_en_string Logica_Basica::retornar_fila_y_butaca_en_base_a_string(std::string string_a_evaluar)
 {
     //? Paso 1: Definimos regex para valida que sea una letra con un dos numeros
-    std::regex regex_fila_y_butaca("[A-Ia-I][0-9][1-9]");
+    std::regex regex_fila_y_butaca("[A-Ia-I][0-1][1-9]");
     std::smatch resultado_de_lectura_regex;
     fila_y_butaca_basado_en_string fila_y_butaca_retorno;
     //? Paso 2: Logica del Programa buscador
