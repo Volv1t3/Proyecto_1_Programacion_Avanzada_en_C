@@ -141,5 +141,53 @@ De esta forma lograremos crear un codigo recursivo con una complejidad minima pa
 asignar a cada una de las sillas un valor de True y asi facilmente conocer cuales estan libres durante ejecucion, sin entrar 
 en problemas como tener un sistema de aliases para reservado o libre.
 </li>
+<li>
+Al trabajar con piezas de codigo que manejen datos externos, siempre tenemos que tener en cuenta que puede entrar un dato
+mal, y saber que hacer con estos datos es muy importante. En un caso muy especifico veamos el caso de retornar el numero de 
+columnas por fila en el teatro
 
+```c++
+unsigned int retornar_numero_de_asientos_basado_en_numero_de_fila(unsigned int numero_de_fila)
+{
+    try
+    {
+        if (numero_de_fila > 0 && numero_de_fila < 9)
+            {
+            return this->numero_de_columnas_por_fila[numero_de_fila];
+            }
+        else 
+            {
+            throw std::invalid_argument("Error code 0x001 - Parametros "
+                                        "Ingresados Incorrectos - Numero de Fila Invalido");
+            }
+    }
+    catch (std::invalid_argument &error)
+    {
+        std::cerr << "Error en la Funcion retornar_numero_de_asientos_"
+                     "basado_en_numero_de_fila(unsigned int numero_de_fila)\n";
+        std::cerr << error.what() << std::endl;
+    }
+}
+```
+La pieza de codigo anterior es una de las cosas mas importantes de este documento, ya que demuestra como se trabajara 
+en el caso de que existan errores al ingreso de datos, el programa no debe fallar, no debe detenerse, debe defenderse de 
+cada intento de abuso por el usuario y por eso usamos un bloque try-catch. <br>
+La excepcion que alzamos, std::invalid_argument() es una excepcion externa en C++ que nos permite inidicar con 
+mayor claridad que ha habido un error por los parametros sin necesidad de escribir nosotros todo el mensaje.
+
+<br> Asimismo dentro de este programa se trabajaran con diferentes estandares de error: <br>
+<ul style=" list-style: lower-roman">
+<li>
+ <span style="font-weight: bolder"> Error Code 0x001 [Raised] - ... : </span> representan errores de argumentos, errores criticos que no permiten el correcto 
+funcionamiento del programa</li>
+<li>
+ <span style="font-weight: bolder"> Error Code 0x002 [Raised] - ... : </span> repesentan errores en funciones que dependen de otras
+si se espera que pueda haber errores con el retorno de alguna otra funcion interdependiente, marcar aquel error con este nombre</li>
+<li>
+ <span style="font-weight: bolder"> Error Code 0x003 [Raised ] - ... : </span> representan errores en constructores, si se espera que pueda haber errores en constructores, alzar 0x001
+y 0x003 juntos con su respectivo mensaje de error</li>
+</ul>
+
+
+</li>
 </ul>
