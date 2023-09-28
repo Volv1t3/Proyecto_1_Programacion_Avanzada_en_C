@@ -74,23 +74,27 @@ Logica_Basica::fila_y_butaca_basado_en_string Logica_Basica::retornar_fila_y_but
     //? Paso 2: Logica del Programa buscador
     try
     {
-        if (std::regex_match(string_a_evaluar, resultado_de_lectura_regex, regex_fila_y_butaca)) {
-            std::cout << resultado_de_lectura_regex.str()[0] << std::endl; //! Debug
-            fila_y_butaca_retorno.fila = get_numero_de_fila_basado_en_character_de_numeracion(resultado_de_lectura_regex.str()[0]);
 
-            std::cout << resultado_de_lectura_regex.str().substr(1, 2) << std::endl; //! Debug
-            fila_y_butaca_retorno.butaca = std::stoi(resultado_de_lectura_regex.str().substr(1, 2));
+        if (string_a_evaluar.length() == 3){
+            if (std::regex_match(string_a_evaluar, resultado_de_lectura_regex, regex_fila_y_butaca)) {
+                std::cout << resultado_de_lectura_regex.str()[0] << std::endl; //! Debug
+                fila_y_butaca_retorno.fila = get_numero_de_fila_basado_en_character_de_numeracion(
+                        resultado_de_lectura_regex.str()[0]);
 
-            return fila_y_butaca_retorno;
+                std::cout << resultado_de_lectura_regex.str().substr(1, 2) << std::endl; //! Debug
+                fila_y_butaca_retorno.butaca = std::stoi(resultado_de_lectura_regex.str().substr(1, 2));
+
+                return fila_y_butaca_retorno;
+            } else {
+                throw std::invalid_argument(
+                        "Error Code 0x001 [Raised] - El paraemtro ingresado para @string_a_evaluar@ es "
+                        "incorrecto, favor asegurese que siga el siguiente formato A01.\n"
+                        "Error COde 0x002 [Raised] - Evaluacion en Regex fallida, asegurese de que el parametro"
+                        "ingresado para @string_a_evaluar@ sea correcto.\n");
+            }
         }
-        else
-        {
-            throw std::invalid_argument("Error Code 0x001 [Raised] - El paraemtro ingresado para @string_a_evaluar@ es "
-                                        "incorrecto, favor asegurese que siga el siguiente formato A01.\n"
-                                        "Error COde 0x002 [Raised] - Evaluacion en Regex fallida, asegurese de que el parametro"
-                                        "ingresado para @string_a_evaluar@ sea correcto.\n");
-        }
-
+        else {throw std::invalid_argument("Error Code 0x001 [Raised] - Los parametros ingresados para "
+                                          "@string_a_evaluar@ son incorectos");}
     }
     catch (std::invalid_argument &error)
     {
